@@ -5,6 +5,8 @@ part 'base_response.g.dart';
 
 @JsonSerializable()
 class BaseResponse{
+  @JsonKey(name: ApiConstants.status)
+  String? status;
   @JsonKey(name: ApiConstants.message)
   String? message;
 }

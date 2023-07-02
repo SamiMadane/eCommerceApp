@@ -16,8 +16,8 @@ Widget headerAuthView({
         height: ManagerHeight.h80,
       ),
       Container(
-        width: 89,
-        height: 101,
+        width: ManagerWidth.w89,
+        height: ManagerHeight.h101,
         child: SvgPicture.asset(
           ManagerAssets.logo,
         ),
