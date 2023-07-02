@@ -6,14 +6,13 @@ import 'manager_fonts.dart';
 
 // _________________________________________________
 
-TextStyle _textStyle ({
+TextStyle _textStyle({
   required double fontSize,
   required String fontFamily,
   required FontWeight fontWeight,
   required Color color,
   required TextDecoration decoration,
-
-}){
+}) {
   return TextStyle(
     fontSize: fontSize,
     color: color,
@@ -25,12 +24,11 @@ TextStyle _textStyle ({
 
 // _________________________________________________
 
-TextStyle getRegularTextStyle ({
+TextStyle getRegularTextStyle({
   required double fontSize,
   required Color color,
   TextDecoration decoration = TextDecoration.none,
-
-}){
+}) {
   return TextStyle(
     fontSize: fontSize,
     color: color,
@@ -42,50 +40,53 @@ TextStyle getRegularTextStyle ({
 
 // _________________________________________________
 
-TextStyle getBoldTextStyle ({
+TextStyle getBoldTextStyle({
   required double fontSize,
   required Color color,
   TextDecoration decoration = TextDecoration.none,
-
-}){
+  double letterSpacing = 0.0,
+}) {
   return TextStyle(
     fontSize: fontSize,
     color: color,
     fontWeight: ManagerFontWeight.bold,
     fontFamily: ManagerFontFamily.fontFamily,
     decoration: decoration,
+    letterSpacing: letterSpacing,
   );
 }
 
- // _________________________________________________
+// _________________________________________________
 
-TextStyle getMediumTextStyle ({
+TextStyle getMediumTextStyle({
   required double fontSize,
   required Color color,
   TextDecoration decoration = TextDecoration.none,
-
-}){
+  double letterSpacing = 0.0,
+}) {
   return TextStyle(
     fontSize: fontSize,
     color: color,
     fontWeight: ManagerFontWeight.medium,
     fontFamily: ManagerFontFamily.fontFamily,
     decoration: decoration,
+    letterSpacing: letterSpacing,
   );
 }
 
-TextStyle getTextStyle ({
+TextStyle getTextStyle({
   required double fontSize,
   required Color color,
   TextDecoration decoration = TextDecoration.none,
   FontWeight? weight,
-
-}){
+  double letterSpacing = 0.0,
+}) {
   return TextStyle(
     fontSize: fontSize,
     color: color,
-    fontWeight: weight?? ManagerFontWeight.medium,
+    fontWeight: weight ?? ManagerFontWeight.medium,
     fontFamily: ManagerFontFamily.fontFamily,
     decoration: decoration,
+    letterSpacing: letterSpacing,
   );
 }

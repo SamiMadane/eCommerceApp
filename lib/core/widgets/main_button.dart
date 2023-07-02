@@ -16,12 +16,7 @@ Widget mainButton({
 }) {
   return MaterialButton(
     onPressed: onPressed.onNull(),
-    shape: shapeBorder ??
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            ManagerRadius.r12,
-          ),
-        ),
+    shape: shapeBorder ,
     color: color.onNull(),
     minWidth: minWidth.onNull(),
     height: height.onNull(),

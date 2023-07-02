@@ -18,4 +18,37 @@ class AppSettingSharedPrefernces {
   void clear(){
     _sharedPreferences.clear();
   }
+
+  Future<void> setToken(String token) async {
+    await _sharedPreferences.setString(ConstantsPrefKey.token, token);
+  }
+
+  String getToken() {
+    return _sharedPreferences.getString(ConstantsPrefKey.token).onNull();
+  }
+
+
+  Future<void> setEmail(String email) async {
+    await _sharedPreferences.setString(ConstantsPrefKey.email, email);
+  }
+
+  String getEmail() {
+    return _sharedPreferences.getString(ConstantsPrefKey.email).onNull();
+  }
+
+  Future<void> setPassword(String password) async {
+    await _sharedPreferences.setString(ConstantsPrefKey.password, password);
+  }
+
+  String getPassword() {
+    return _sharedPreferences.getString(ConstantsPrefKey.password).onNull();
+  }
+
+  Future<void> setLoggedIn() async {
+    await _sharedPreferences.setBool(ConstantsPrefKey.loggedIn, true);
+  }
+
+  bool loggedIn() {
+    return _sharedPreferences.getBool(ConstantsPrefKey.loggedIn).onNull();
+  }
 }
