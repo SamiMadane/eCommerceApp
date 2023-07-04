@@ -9,12 +9,11 @@ class LoginResponse extends BaseResponse {
   @JsonKey(name: ApiConstants.data)
   LoginDataResponse? data;
 
-
-  LoginResponse(this.data);
+  LoginResponse({this.data});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
 
-  Map<String, dynamic> toJson(LoginResponse instance) =>
+  Map<String, dynamic> toJson() =>
       _$LoginResponseToJson(this);
 }

@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/widgets/swip_wide_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -41,27 +42,7 @@ class ScaffoldWithImageAndTextAndLoader extends StatelessWidget {
                   SizedBox(
                     height: ManagerHeight.h40,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        firstText,
-                        style: getTextStyle(
-                          fontSize: ManagerFontSize.s38,
-                          color: ManagerColors.textPrimaryColor,
-                          weight: ManagerFontWeight.w900,
-                        ),
-                      ),
-                      Text(
-                        secondText,
-                        style: getTextStyle(
-                          fontSize: ManagerFontSize.s38,
-                          color: ManagerColors.textColorLight,
-                          weight: ManagerFontWeight.w900,
-                        ),
-                      ),
-                    ],
-                  ),
+                  SwipWide(),
                 ],
               ),
             ),

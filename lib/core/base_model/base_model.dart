@@ -1,5 +1,6 @@
 class BaseModel {
   String? message;
+  bool? status;
 
-  BaseModel({this.message});
+  BaseModel({this.message,this.status});
 }

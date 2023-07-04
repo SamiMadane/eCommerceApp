@@ -69,7 +69,7 @@ class LoginController extends GetxController {
         _appSettingsSharedPreferences.setPassword(password.text);
         _appSettingsSharedPreferences.setLoggedIn();
       }
-      _appSettingsSharedPreferences.setToken(r.token.onNull());
+      _appSettingsSharedPreferences.setToken(r.loginData!.token.onNull());
       Get.back();
       dialogRender(
         context: context,

@@ -85,6 +85,7 @@ class RegisterView extends StatelessWidget {
                     height: ManagerHeight.h25,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       customCheckbox(
                         state: controller.isAgreementPolicy,
@@ -146,7 +147,11 @@ class RegisterView extends StatelessWidget {
                     color: ManagerColors.primaryColor,
                     minWidth: double.infinity,
                     height: ManagerHeight.h55,
-                    onPressed: () {},
+                    onPressed: () {
+                      if (controller.formKey.currentState!.validate()) {
+                        controller.performRegister(context);
+                      }
+                    },
                   ),
                   SizedBox(
                     height: ManagerHeight.h20,

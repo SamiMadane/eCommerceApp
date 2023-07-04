@@ -82,7 +82,7 @@ initLoginModule() {
 
   if (!GetIt.I.isRegistered<LoginRepository>()) {
     instance.registerLazySingleton<LoginRepository>(
-            () => LoginRepositoryImpl(instance(), instance())
+            () => LoginRepositoryImpl(instance(), instance<NetworkInfo>())
     );
   }
 

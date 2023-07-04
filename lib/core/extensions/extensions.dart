@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:e_commerce/features/auth/data/response/register_data_response.dart';
 import 'package:flutter/material.dart';
 
 extension NoNullString on String? {
@@ -65,3 +66,4 @@ extension NoNullBoolFunction on bool Function()? {
     }
   }
 }
+

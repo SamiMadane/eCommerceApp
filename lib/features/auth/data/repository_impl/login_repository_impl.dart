@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/config/constant.dart';
 import 'package:e_commerce/core/error_handler/error_handler.dart';
+import 'package:e_commerce/core/extensions/extensions.dart';
 import 'package:e_commerce/features/auth/data/mapper/login_mapper.dart';
 import '../../../../core/internet_checker/internet_checker.dart';
 import '../../data/data_source/reomte_login_data_source.dart';
@@ -21,7 +22,13 @@ class LoginRepositoryImpl implements LoginRepository {
     if (await networkInfo.isConnected) {
       try{
         final response = await _dataSource.login(loginRequest);
-        return Right(response.toDomain());
+        if(response.status == true){
+          return Right(response.toDomain());
+        }else{
+          return Left(
+            Failure(ResponseCode.BAD_REQUEST.value,response.message.onNull()),
+          );
+        }
       }catch(e){
         return Left(ErrorHandler.handle(e).failure);
       }

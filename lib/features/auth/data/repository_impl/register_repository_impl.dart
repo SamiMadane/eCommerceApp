@@ -1,6 +1,6 @@
-
 import 'package:e_commerce/config/constant.dart';
 import 'package:e_commerce/core/error_handler/error_handler.dart';
+import 'package:e_commerce/core/extensions/extensions.dart';
 import 'package:e_commerce/features/auth/data/data_source/reomte_register_data_source.dart';
 import 'package:e_commerce/features/auth/data/mapper/register_mapper.dart';
 import 'package:e_commerce/features/auth/domain/model/register.dart';
@@ -18,11 +18,18 @@ class RegisterRepositoryImpl implements RegisterRepository {
   RegisterRepositoryImpl(this._dataSource, this.networkInfo);
 
   @override
-  Future<Either<Failure, Register>> register(RegisterRequest registerRequest) async {
+  Future<Either<Failure, Register>> register(
+      RegisterRequest registerRequest) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await _dataSource.register(registerRequest);
-        return Right(response.toDomain());
+        if (response.status == true) {
+          return Right(response.toDomain());
+        } else {
+          return Left(
+            Failure(ResponseCode.BAD_REQUEST.value, response.message.onNull()),
+          );
+        }
       } catch (e) {
         return Left(
           ErrorHandler.handle(e).failure,
@@ -37,8 +44,4 @@ class RegisterRepositoryImpl implements RegisterRepository {
       );
     }
   }
-
-
-
-
 }

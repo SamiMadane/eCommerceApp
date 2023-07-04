@@ -51,5 +51,6 @@ class ApiConstants {
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
   static const String otp = 'otp';
+  static const String LoginFailed = 'Login Failed !!';
 
 }
