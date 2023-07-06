@@ -5,7 +5,10 @@ import 'package:e_commerce/core/widgets/main_button.dart';
 import 'package:e_commerce/core/widgets/will_pop_scope.dart';
 import 'package:e_commerce/features/home/presentation/widget/prodect_coloers.dart';
 import 'package:e_commerce/features/home/presentation/widget/rating_bar.dart';
+import 'package:e_commerce/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../../../core/resources/manager_colors.dart';
 import '../../../../core/resources/manager_styles.dart';
 
@@ -15,9 +18,12 @@ class ProductDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return willPopScope(
-      back: true,
+      back: false,
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(icon:Icon(IconBroken.Arrow___Left_2), onPressed: () {
+            Get.offAllNamed(Routes.homeView);
+          },),
           actions: [
             Padding(
               padding: const EdgeInsets.all(15.0),
