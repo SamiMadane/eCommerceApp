@@ -12,6 +12,7 @@ class ManagerFontWeight {
   static const FontWeight regular = FontWeight.w400;
   static const FontWeight w300 = FontWeight.w300;
   static const FontWeight w600 = FontWeight.w600;
+  static const FontWeight w800 = FontWeight.w800;
   static const FontWeight w900 = FontWeight.w900;
 }
 
@@ -26,7 +27,9 @@ class ManagerFontSize {
   static double s16 = SizeUtil.setFontSize(16);
   static double s18 = SizeUtil.setFontSize(18);
   static double s20 = SizeUtil.setFontSize(20);
+  static double s24 = SizeUtil.setFontSize(24);
   static double s26 = SizeUtil.setFontSize(26);
+  static double s28 = SizeUtil.setFontSize(28);
   static double s32 = SizeUtil.setFontSize(32);
   static double s38 = SizeUtil.setFontSize(38);
 }

@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/resources/icon_broken.dart';
+import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -11,9 +12,11 @@ class MainController extends GetxController {
 
   Color color = ManagerColors.black;
   List<Widget> screens = [
-    Container(
-      color: Colors.red,
-    ),
+    // Container(
+    //   color: Colors.red,
+    // ),
+    HomeView(),
+
     Container(
       color: Colors.green,
     ),
@@ -23,7 +26,6 @@ class MainController extends GetxController {
     Container(
       color: Colors.blue,
     ),
-    //HomeView(),
     // CategoryView(),
     // AppointmentView(),
     // ProfileView()

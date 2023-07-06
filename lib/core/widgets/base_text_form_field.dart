@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/extensions/extensions.dart';
+import 'package:e_commerce/core/resources/icon_broken.dart';
 import 'package:flutter/material.dart';
 import '../resources/manager_colors.dart';
 import '../resources/manager_fonts.dart';
@@ -13,6 +14,7 @@ TextFormField baseTextFormField({
   validator,
   FocusNode? focusNode,
   onChange,
+  IconData? prefixIcon ,
 }) {
   return TextFormField(
     style: getMediumTextStyle(
@@ -28,6 +30,7 @@ TextFormField baseTextFormField({
     onChanged: onChange ?? (val) {},
     decoration: InputDecoration(
       filled: true,
+      prefixIcon: Icon(prefixIcon),
       contentPadding: EdgeInsets.symmetric(
         horizontal: ManagerWidth.w16,
         vertical: ManagerHeight.h6,

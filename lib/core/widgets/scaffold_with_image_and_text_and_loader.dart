@@ -42,7 +42,7 @@ class ScaffoldWithImageAndTextAndLoader extends StatelessWidget {
                   SizedBox(
                     height: ManagerHeight.h40,
                   ),
-                  SwipWide(),
+                  SwipWide(size: ManagerFontSize.s38),
                 ],
               ),
             ),

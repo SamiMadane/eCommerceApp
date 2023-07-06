@@ -11,6 +11,7 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return willPopScope(
+      back: false,
       child: GetBuilder<MainController>(
         builder: (controller) {
           return PersistentTabView(
@@ -23,10 +24,10 @@ class MainView extends StatelessWidget {
             decoration: NavBarDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(
-                  ManagerRadius.r16,
+                  ManagerRadius.r30,
                 ),
                 topRight: Radius.circular(
-                  ManagerRadius.r16,
+                  ManagerRadius.r30,
                 ),
               ),
             ),

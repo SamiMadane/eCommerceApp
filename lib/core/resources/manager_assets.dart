@@ -8,6 +8,9 @@ static const String outBoardingIllustration2 = '$imagePath/Illustration2.svg';
 static const String outBoardingIllustration3 = '$imagePath/Illustration3.svg';
 static const String google = '$imagePath/google.svg';
 static const String facebook = '$imagePath/facebook.svg';
+static const String colthes = '$imagePath/clothes.svg';
+static const String colthesIcon = '$imagePath/Clothes Icon.png';
+static const String watch = '$imagePath/watch.png';
 }
 
 

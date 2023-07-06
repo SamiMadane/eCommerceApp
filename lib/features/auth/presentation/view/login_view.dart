@@ -27,205 +27,204 @@ class LoginView extends StatelessWidget {
         builder: (controller) {
           return Form(
             key: controller.formKey,
-            child: Container(
-              color: ManagerColors.white,
-              width: double.infinity,
-              height: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w30),
-              child: Column(
-                children: [
-                  headerAuthView(
-                    mainText: ManagerStrings.welcomeBack,
-                    secondaryText: ManagerStrings.loginToYourAccount,
-                  ),
-                  SizedBox(
-                    height: ManagerHeight.h50,
-                  ),
-                  baseTextFormField(
-                    hintText: ManagerStrings.emailAddress,
-                    keyboardType: TextInputType.emailAddress,
-                    controller: controller.email,
-                    validator: (value) => _failedValidator.validateEmail(
-                      value,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w30),
+                child: Column(
+                  children: [
+                    headerAuthView(
+                      mainText: ManagerStrings.welcomeBack,
+                      secondaryText: ManagerStrings.loginToYourAccount,
                     ),
-                  ),
-                  SizedBox(
-                    height: ManagerHeight.h30,
-                  ),
-                  baseTextFormField(
-                    hintText: ManagerStrings.password,
-                    keyboardType: TextInputType.text,
-                    controller: controller.password,
-                    obscureText: true,
-                    validator: (value) => _failedValidator.validatePassword(
-                      value,
+                    SizedBox(
+                      height: ManagerHeight.h50,
                     ),
-                  ),
-                  SizedBox(
-                    height: ManagerHeight.h10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          customCheckbox(
-                            state: controller.rememberMe,
-                            onChanged: (status) {
-                              controller.changeRememberMe(status!);
-                            },
-                          ),
-                          Text(
-                            ManagerStrings.rememberMe,
-                            style: getMediumTextStyle(
+                    baseTextFormField(
+                      hintText: ManagerStrings.emailAddress,
+                      keyboardType: TextInputType.emailAddress,
+                      controller: controller.email,
+                      validator: (value) => _failedValidator.validateEmail(
+                        value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: ManagerHeight.h30,
+                    ),
+                    baseTextFormField(
+                      hintText: ManagerStrings.password,
+                      keyboardType: TextInputType.text,
+                      controller: controller.password,
+                      obscureText: true,
+                      validator: (value) => _failedValidator.validatePassword(
+                        value,
+                      ),
+                    ),
+                    SizedBox(
+                      height: ManagerHeight.h10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            customCheckbox(
+                              state: controller.rememberMe,
+                              onChanged: (status) {
+                                controller.changeRememberMe(status!);
+                              },
+                            ),
+                            Text(
+                              ManagerStrings.rememberMe,
+                              style: getMediumTextStyle(
+                                fontSize: ManagerFontSize.s16,
+                                color: ManagerColors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            ManagerStrings.forgetPassword,
+                            style: getTextStyle(
+                              color: ManagerColors.primaryColor,
                               fontSize: ManagerFontSize.s16,
-                              color: ManagerColors.black,
+                              weight: ManagerFontWeight.w600,
                             ),
                           ),
-                        ],
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          ManagerStrings.forgetPassword,
-                          style: getTextStyle(
-                            color: ManagerColors.primaryColor,
-                            fontSize: ManagerFontSize.s16,
-                            weight: ManagerFontWeight.w600,
-                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
 
-                  SizedBox(
-                    height: ManagerHeight.h20,
-                  ),
-                  mainButton(
-                    child: Text(
-                      ManagerStrings.login,
-                      style: getBoldTextStyle(
-                        fontSize: ManagerFontSize.s18,
-                        color: ManagerColors.white,
-                      ),
+                    SizedBox(
+                      height: ManagerHeight.h20,
                     ),
-                    color: ManagerColors.primaryColor,
-                    minWidth: double.infinity,
-                    height: ManagerHeight.h55,
-                    onPressed: () {
-                      if (controller.formKey.currentState!.validate()) {
-                        controller.performLogin(context);
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: ManagerHeight.h30,
-                  ),
-                  Text(
-                    ManagerStrings.or,
-                    style: getTextStyle(
-                      color: ManagerColors.textgreyColor,
-                      fontSize: ManagerFontSize.s18,
-                      weight: ManagerFontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(
-                    height: ManagerHeight.h30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      mainButton(
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              ManagerAssets.google,
-                              width: ManagerIconSize.s25,
-                              height: ManagerIconSize.s25,
-                            ),
-                            Text(
-                              ManagerStrings.google,
-                              style: getTextStyle(
-                                fontSize: ManagerFontSize.s16,
-                                color: ManagerColors.black,
-                                weight: ManagerFontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                        onPressed: () {},
-                        color: ManagerColors.white,
-                        shapeBorder: Border.all(
-                          color: ManagerColors.secondaryButtonColor,
-                        ),
-                        minWidth: ManagerWidth.w170,
-                        height: ManagerHeight.h55,
-                      ),
-                      mainButton(
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              ManagerAssets.facebook,
-                              width: ManagerIconSize.s30,
-                              height: ManagerIconSize.s30,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              ManagerStrings.facebook,
-                              style: getTextStyle(
-                                fontSize: ManagerFontSize.s16,
-                                color: ManagerColors.black,
-                                weight: ManagerFontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                        onPressed: () {},
-                        color: ManagerColors.white,
-                        shapeBorder: Border.all(
-                          color: ManagerColors.secondaryButtonColor,
-                        ),
-                        minWidth: ManagerWidth.w170,
-                        height: ManagerHeight.h55,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: ManagerHeight.h30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        ManagerStrings.dontHaveAnAccount,
-                        textAlign: TextAlign.center,
-                        style: getMediumTextStyle(
-                          color: ManagerColors.textgreyColor,
+                    mainButton(
+                      child: Text(
+                        ManagerStrings.login,
+                        style: getBoldTextStyle(
                           fontSize: ManagerFontSize.s18,
-                          letterSpacing: -0.18,
+                          color: ManagerColors.white,
                         ),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Get.offAllNamed(Routes.registerView);
-                        },
-                        child: Text(
-                          ManagerStrings.signUp,
+                      color: ManagerColors.primaryColor,
+                      minWidth: double.infinity,
+                      height: ManagerHeight.h55,
+                      onPressed: () {
+                        if (controller.formKey.currentState!.validate()) {
+                          controller.performLogin(context);
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: ManagerHeight.h30,
+                    ),
+                    Text(
+                      ManagerStrings.or,
+                      style: getTextStyle(
+                        color: ManagerColors.textgreyColor,
+                        fontSize: ManagerFontSize.s18,
+                        weight: ManagerFontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      height: ManagerHeight.h30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        mainButton(
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                ManagerAssets.google,
+                                width: ManagerIconSize.s25,
+                                height: ManagerIconSize.s25,
+                              ),
+                              Text(
+                                ManagerStrings.google,
+                                style: getTextStyle(
+                                  fontSize: ManagerFontSize.s16,
+                                  color: ManagerColors.black,
+                                  weight: ManagerFontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          onPressed: () {},
+                          color: ManagerColors.white,
+                          shapeBorder: Border.all(
+                            color: ManagerColors.secondaryButtonColor,
+                          ),
+                          minWidth: ManagerWidth.w170,
+                          height: ManagerHeight.h55,
+                        ),
+                        mainButton(
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                ManagerAssets.facebook,
+                                width: ManagerIconSize.s30,
+                                height: ManagerIconSize.s30,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                ManagerStrings.facebook,
+                                style: getTextStyle(
+                                  fontSize: ManagerFontSize.s16,
+                                  color: ManagerColors.black,
+                                  weight: ManagerFontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          onPressed: () {},
+                          color: ManagerColors.white,
+                          shapeBorder: Border.all(
+                            color: ManagerColors.secondaryButtonColor,
+                          ),
+                          minWidth: ManagerWidth.w170,
+                          height: ManagerHeight.h55,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: ManagerHeight.h30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          ManagerStrings.dontHaveAnAccount,
                           textAlign: TextAlign.center,
-                          style: getTextStyle(
-                            color: ManagerColors.primaryColor,
+                          style: getMediumTextStyle(
+                            color: ManagerColors.textgreyColor,
                             fontSize: ManagerFontSize.s18,
-                            weight: FontWeight.w600,
                             letterSpacing: -0.18,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        TextButton(
+                          onPressed: () {
+                            Get.offAllNamed(Routes.registerView);
+                          },
+                          child: Text(
+                            ManagerStrings.signUp,
+                            textAlign: TextAlign.center,
+                            style: getTextStyle(
+                              color: ManagerColors.primaryColor,
+                              fontSize: ManagerFontSize.s18,
+                              weight: FontWeight.w600,
+                              letterSpacing: -0.18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );

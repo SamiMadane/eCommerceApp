@@ -14,6 +14,8 @@ class ManagerColors {
   static const Color textgreyColor = Color(0xffAAAAAA);
   static const Color borderTextFormFieldColor = Color(0xFFE5E5E5);
   static const Color secondaryButtonColor = Color(0xFFE5E5E5);
+  static const Color backGroundImage = Color(0xF4EAEAEA);
+  static const Color activeStar = Color(0xFFFFA305);
   static const Color transparent = Colors.transparent;
 
 

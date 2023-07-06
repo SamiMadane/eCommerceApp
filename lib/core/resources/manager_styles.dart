@@ -63,6 +63,7 @@ TextStyle getMediumTextStyle({
   required Color color,
   TextDecoration decoration = TextDecoration.none,
   double letterSpacing = 0.0,
+  double height = 0.0,
 }) {
   return TextStyle(
     fontSize: fontSize,
@@ -71,6 +72,7 @@ TextStyle getMediumTextStyle({
     fontFamily: ManagerFontFamily.fontFamily,
     decoration: decoration,
     letterSpacing: letterSpacing,
+    height: height,
   );
 }
 
@@ -80,6 +82,7 @@ TextStyle getTextStyle({
   TextDecoration decoration = TextDecoration.none,
   FontWeight? weight,
   double letterSpacing = 0.0,
+  double height = 0.0,
 }) {
   return TextStyle(
     fontSize: fontSize,
@@ -88,5 +91,6 @@ TextStyle getTextStyle({
     fontFamily: ManagerFontFamily.fontFamily,
     decoration: decoration,
     letterSpacing: letterSpacing,
+    height: height,
   );
 }
