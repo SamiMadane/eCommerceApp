@@ -1,3 +1,11 @@
+import 'package:e_commerce/config/dependency_injection.dart';
+import 'package:e_commerce/routes/routes.dart';
+import 'package:e_commerce/storage/local/app_setting_shared_prefernces.dart';
+import 'package:get/get.dart';
+
+AppSettingSharedPrefernces _appSettingSharedPrefernces =
+instance<AppSettingSharedPrefernces>();
+
 class Constants{
   static const double deviceWidth = 428;
   static const double deviceHeight = 926;
@@ -42,7 +50,7 @@ class ApiConstants {
   static const String status = 'status';
   static const String name = 'name';
   static const String passwordConfirmation = 'password_confirmation';
-  static const String acceptLanguage = 'Accept-Language';
+  static const String lang = 'lang';
   static const String english = 'en';
   static const String arabic = 'ar';
   static const String verificationEmail = 'email';
@@ -52,5 +60,16 @@ class ApiConstants {
   static const String applicationJson = 'application/json';
   static const String otp = 'otp';
   static const String LoginFailed = 'Login Failed !!';
+  static const String productID = 'product_id';
+  static const String product = 'product';
+  static const String text = 'text';
+}
 
+void logOut(){
+  _appSettingSharedPrefernces.removeLoggedIn(loggedIn:ConstantsPrefKey.loggedIn);
+  _appSettingSharedPrefernces.removeToken(token: ConstantsPrefKey.token).then((value){
+    if(value){
+      Get.offAllNamed(Routes.loginView);
+    }
+  });
 }

@@ -13,8 +13,34 @@ import 'package:e_commerce/features/auth/presentation/controller/forget_password
 import 'package:e_commerce/features/auth/presentation/controller/login_controller.dart';
 import 'package:e_commerce/features/auth/presentation/controller/register_controller.dart';
 import 'package:e_commerce/features/auth/presentation/controller/reset_password_controller.dart';
+import 'package:e_commerce/features/favourite/data/data_source/get_favorites_data_source_impl/remote_get_favorites_data_source.dart';
+import 'package:e_commerce/features/favourite/data/data_source/remote_favorite_data_source.dart';
+import 'package:e_commerce/features/favourite/data/repository_impl/favorite_repository_implementation.dart';
+import 'package:e_commerce/features/favourite/data/repository_impl/get_favorites_repository_impl/favorites_repository_impl.dart';
+import 'package:e_commerce/features/favourite/domain/repository/favorite_repository.dart';
+import 'package:e_commerce/features/favourite/domain/repository/get_favorites_repository/favorites_repository.dart';
+import 'package:e_commerce/features/favourite/domain/use_case/favorite_usecase.dart';
+import 'package:e_commerce/features/favourite/domain/use_case/get_favorites_use_case/get_favorites_use_case.dart';
+import 'package:e_commerce/features/favourite/presentation/controller/favorite_controller.dart';
+import 'package:e_commerce/features/home/data/data_source/remote_category_data_source.dart';
+import 'package:e_commerce/features/home/data/data_source/remote_home_data_source.dart';
+import 'package:e_commerce/features/home/data/repository_impl/category_repository_implementation.dart';
+import 'package:e_commerce/features/home/data/repository_impl/home_repository_implementation.dart';
+import 'package:e_commerce/features/home/domain/repository/category_repository.dart';
+import 'package:e_commerce/features/home/domain/repository/home_repository.dart';
+import 'package:e_commerce/features/home/domain/use_case/category_usecase.dart';
+import 'package:e_commerce/features/home/domain/use_case/home_usecase.dart';
 import 'package:e_commerce/features/home/presentation/controller/home_controller.dart';
 import 'package:e_commerce/features/main/controller/main_controller.dart';
+import 'package:e_commerce/features/product_details/data/data_source/remote_product_details_data_source.dart';
+import 'package:e_commerce/features/product_details/data/repository_impl/product_details_repository_implementation.dart';
+import 'package:e_commerce/features/product_details/domain/repository/product_details_repository.dart';
+import 'package:e_commerce/features/product_details/domain/use_case/product_details_usecase.dart';
+import 'package:e_commerce/features/product_details/presentation/controller/product_details_controller.dart';
+import 'package:e_commerce/features/search/data/data_source/remote_get_search_data_source.dart';
+import 'package:e_commerce/features/search/data/repository_impl/search_repository_impl.dart';
+import 'package:e_commerce/features/search/domain/repository/search_repository.dart';
+import 'package:e_commerce/features/search/domain/use_case/get_search_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -146,13 +172,209 @@ disposeRegisterModule() {
 
 initMainModule() {
   initHomeModule();
+  initGetFavoritesModule();
   Get.put<MainController>(MainController());
 }
 
+initCategoryModule() {
+  if (!GetIt.I.isRegistered<RemoteCategoryDataSource>()) {
+    instance.registerLazySingleton<RemoteCategoryDataSource>(
+          () => RemoteCategoryDataSourceImplement(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<CategoryRepository>()) {
+    instance.registerLazySingleton<CategoryRepository>(
+          () => CategoryRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<CategoryUseCase>()) {
+    instance.registerLazySingleton<CategoryUseCase>(
+          () => CategoryUseCase(
+        instance(),
+      ),
+    );
+  }
+
+}
 initHomeModule() {
+  initCategoryModule();
+  initFavoriteModule();
+  initSearchModule();
+
+  if (!GetIt.I.isRegistered<RemoteHomeDataSource>()) {
+    instance.registerLazySingleton<RemoteHomeDataSource>(
+          () => RemoteHomeDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<HomeRepository>()) {
+    instance.registerLazySingleton<HomeRepository>(
+          () => HomeRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerLazySingleton<HomeUseCase>(
+          () => HomeUseCase(
+        instance(),
+      ),
+    );
+  }
+
   Get.put<HomeController>(HomeController());
 }
+initFavoriteModule() {
+  if (!GetIt.I.isRegistered<RemoteFavoriteDataSource>()) {
+    instance.registerLazySingleton<RemoteFavoriteDataSource>(
+          () => RemoteFavoriteDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
 
+  if (!GetIt.I.isRegistered<FavoriteRepository>()) {
+    instance.registerLazySingleton<FavoriteRepository>(
+          () => FavoriteRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<FavoriteUseCase>()) {
+    instance.registerLazySingleton<FavoriteUseCase>(
+          () => FavoriteUseCase(
+        instance(),
+      ),
+    );
+  }
+
+}
+
+initSearchModule() {
+  if (!GetIt.I.isRegistered<RemoteSearchDataSource>()) {
+    instance.registerLazySingleton<RemoteSearchDataSource>(
+          () => RemoteSearchDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<SearchRepository>()) {
+    instance.registerLazySingleton<SearchRepository>(
+          () => SearchRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<SearchUseCase>()) {
+    instance.registerLazySingleton<SearchUseCase>(
+          () => SearchUseCase(
+        instance(),
+      ),
+    );
+  }
+
+}
+
+initProductDetailsModule() {
+  if (!GetIt.I.isRegistered<RemoteProductDetailsDataSource>()) {
+    instance.registerLazySingleton<RemoteProductDetailsDataSource>(
+          () => RemoteProductDetailsDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ProductDetailsRepository>()) {
+    instance.registerLazySingleton<ProductDetailsRepository>(
+          () => ProductDetailsRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ProductDetailsUseCase>()) {
+    instance.registerLazySingleton<ProductDetailsUseCase>(
+          () => ProductDetailsUseCase(
+        instance(),
+      ),
+    );
+  }
+  Get.put<ProductDetailsController>(ProductDetailsController());
+}
+
+disposeProductDetailsModule() {
+  if (GetIt.I.isRegistered<RemoteProductDetailsDataSource>()) {
+    instance.unregister<RemoteProductDetailsDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<ProductDetailsRepository>()) {
+    instance.unregister<ProductDetailsRepository>();
+  }
+
+  if (GetIt.I.isRegistered<ProductDetailsUseCase>()) {
+    instance.unregister<ProductDetailsUseCase>();
+  }
+  Get.delete<ProductDetailsController>();
+}
+
+initGetFavoritesModule() {
+  if (!GetIt.I.isRegistered<RemoteGetFavoritesDataSource>()) {
+    instance.registerLazySingleton<RemoteGetFavoritesDataSource>(
+          () => RemoteGetFavoritesDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<GetFavoritesRepository>()) {
+    instance.registerLazySingleton<GetFavoritesRepository>(
+          () => GetFavoritesRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<GetFavoritesUseCase>()) {
+    instance.registerLazySingleton<GetFavoritesUseCase>(
+          () => GetFavoritesUseCase(
+        instance(),
+      ),
+    );
+  }
+  Get.put<FavoriteController>(FavoriteController());
+}
+disposeGetFavoritesModule() {
+  if (GetIt.I.isRegistered<RemoteGetFavoritesDataSource>()) {
+    instance.unregister<RemoteGetFavoritesDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<GetFavoritesRepository>()) {
+    instance.unregister<GetFavoritesRepository>();
+  }
+
+  if (GetIt.I.isRegistered<GetFavoritesUseCase>()) {
+    instance.unregister<GetFavoritesUseCase>();
+  }
+  Get.delete<FavoriteController>();
+}
 
 
 

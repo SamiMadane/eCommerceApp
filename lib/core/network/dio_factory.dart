@@ -15,9 +15,10 @@ class DioFactory {
   Future<Dio> getDio() async {
     Dio dio = Dio();
     Map<String, String> headers = {
-      ApiConstants.authorization:
-      getAuthorization(_appSettingsSharedPreferences.getToken()),
-      ApiConstants.acceptLanguage: ApiConstants.english,
+      ApiConstants.authorization: getAuthorization(_appSettingsSharedPreferences.getToken()),
+      ApiConstants.lang: ApiConstants.english,
+      ApiConstants.contentType: ApiConstants.applicationJson,
+      ApiConstants.accept:ApiConstants.accept,
     };
 
     dio.options = BaseOptions(
@@ -57,6 +58,6 @@ class DioFactory {
   }
 
   String getAuthorization(String token) {
-    return '${ManagerStrings.bearer} $token';
+    return '$token';
   }
 }

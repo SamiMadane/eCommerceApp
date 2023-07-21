@@ -12,7 +12,6 @@ import 'package:e_commerce/features/home/presentation/widget/build_grid_product.
 import 'package:e_commerce/features/home/presentation/widget/custom_drawer.dart';
 import 'package:e_commerce/features/home/presentation/widget/home_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
@@ -20,108 +19,126 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(),
-      drawer: CustomDrawer(),
-      body: GetBuilder<HomeController>(
-        builder: (controller) {
-          return SingleChildScrollView(
+    return GetBuilder<HomeController>(
+      builder: (controller) {
+        return Scaffold(
+          appBar: CustomAppBar(),
+          drawer: CustomDrawer(),
+          body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: ManagerHeight.h20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: ManagerHeight.h20,
+                  ),
+                  baseTextFormField(
+                    hintText: 'Search “Smartphone”',
+                    controller: controller.search,
+                    prefixIcon: Icon(IconBroken.Search),
+                    onSubmit: (text){
+                      // controller.submit();
+                      // controller.searchProduct(text.toString());
+                    }
+                  ),
+                  SizedBox(
+                    height: ManagerHeight.h50,
+                  ),
+                  Text(
+                    'Shop By Category',
+                    style: getTextStyle(
+                      fontSize: ManagerFontSize.s20,
+                      color: ManagerColors.black,
+                      weight: ManagerFontWeight.w600,
                     ),
-                    baseTextFormField(
-                      hintText: 'Search “Smartphone”',
-                      controller: controller.search,
-                      prefixIcon: IconBroken.Search,
-                    ),
-                    SizedBox(
-                      height: ManagerHeight.h50,
-                    ),
-                    Text(
-                      'Shop By Category',
-                      style: getTextStyle(
-                        fontSize: ManagerFontSize.s20,
-                        color: ManagerColors.black,
-                        weight: ManagerFontWeight.w600,
-                      ),
-                    ),
-                    SizedBox(
-                      height: ManagerHeight.h22,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: ManagerHeight.h170,
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 14,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Expanded(
-                                  child: CircleAvatar(
-                                    radius: 40,
-                                    backgroundColor: Colors.white,
-                                    child: Image.asset(
-                                      ManagerAssets.colthesIcon,
+                  ),
+                  SizedBox(
+                    height: ManagerHeight.h22,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: ManagerHeight.h170,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.categoryDataModel
+                            ?.categoryDataDetailsModel?.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: CircleAvatar(
+                                  radius: 40,
+                                  backgroundColor: Colors.white,
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      controller
+                                          .categoryDataModel!
+                                          .categoryDataDetailsModel![index]
+                                          .image ??
+                                          'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: ManagerHeight.h10,
+                              ),
+                              SizedBox(
+                                height: ManagerHeight.h10,
+                              ),
+                              Expanded(child: Container(width: ManagerWidth.w100, child:Text(
+                                controller
+                                    .categoryDataModel!
+                                    .categoryDataDetailsModel![index]
+                                    .name ??
+                                    'Nothing',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: getTextStyle(
+                                  fontSize: ManagerFontSize.s16,
+                                  color: ManagerColors.black,
+                                  weight: ManagerFontWeight.w600,
                                 ),
-                                Expanded(
-                                    child: Text(
-                                  'Clothes',
-                                  style: getTextStyle(
-                                    fontSize: ManagerFontSize.s16,
-                                    color: ManagerColors.black,
-                                    weight: ManagerFontWeight.w600,
-                                  ),
-                                )),
-                              ],
-                            );
-                          }),
+                              ),)),
+                            ],
+                          );
+                        }),
+                  ),
+                  SizedBox(
+                    height: ManagerHeight.h4,
+                  ),
+                  Text(
+                    'Newest Arrival',
+                    style: getTextStyle(
+                      fontSize: ManagerFontSize.s20,
+                      color: ManagerColors.black,
+                      weight: ManagerFontWeight.w600,
                     ),
-                    SizedBox(
-                      height: ManagerHeight.h10,
+                  ),
+                  SizedBox(
+                    height: ManagerHeight.h22,
+                  ),
+                  GridView.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: ManagerHeight.h30,
+                    crossAxisSpacing: ManagerWidth.w30,
+                    childAspectRatio: 1 / 1.65,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: List.generate(
+                      controller.homeDataModel!.products!.length,
+                          (index) =>
+                          buildGridProducts(context: context, index: index ,isSearch: controller.isSearch()),
                     ),
-                    Text(
-                      'Newest Arrival',
-                      style: getTextStyle(
-                        fontSize: ManagerFontSize.s20,
-                        color: ManagerColors.black,
-                        weight: ManagerFontWeight.w600,
-                      ),
-                    ),
-                    SizedBox(
-                      height: ManagerHeight.h22,
-                    ),
-                    GridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: ManagerHeight.h30,
-                      crossAxisSpacing: ManagerWidth.w30,
-                      childAspectRatio: 1 / 1.57,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: List.generate(
-                        16,
-                        (index) => buildGridProducts(context),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-          );
-        },
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

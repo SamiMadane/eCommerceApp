@@ -12,6 +12,7 @@ class ManagerColors {
   static const Color textColorDark = Color(0xffFFFFFF);
   static const Color textPrimaryColor = Color(0xffF13005);
   static const Color textgreyColor = Color(0xffAAAAAA);
+  static const Color textgreyOpacityColor = Color(0xf0d7d3d3);
   static const Color borderTextFormFieldColor = Color(0xFFE5E5E5);
   static const Color secondaryButtonColor = Color(0xFFE5E5E5);
   static const Color backGroundImage = Color(0xF4EAEAEA);

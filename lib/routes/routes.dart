@@ -2,9 +2,12 @@ import 'package:e_commerce/features/auth/presentation/view/forget_password_view.
 import 'package:e_commerce/features/auth/presentation/view/login_view.dart';
 import 'package:e_commerce/features/auth/presentation/view/register_view.dart';
 import 'package:e_commerce/features/auth/presentation/view/reset_password_view.dart';
+import 'package:e_commerce/features/cart/presentation/view/cart_view.dart';
+import 'package:e_commerce/features/favourite/presentation/view/favourite_view.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
-import 'package:e_commerce/features/home/presentation/view/product_details_view.dart';
 import 'package:e_commerce/features/main/view/main_view.dart';
+import 'package:e_commerce/features/product_details/presentation/view/product_details_view.dart';
+import 'package:e_commerce/features/profile/presentation/view/profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../config/dependency_injection.dart';
@@ -22,6 +25,9 @@ class Routes {
   static const String homeView = '/home_view';
   static const String mainView = '/main_view';
   static const String productDetailsView = '/product_details_view';
+  static const String profileView = '/profile_view';
+  static const String cartView = '/cart_view';
+  static const String favoriteView = '/favorite_view';
 }
 
 class RouteGenerator {
@@ -46,8 +52,15 @@ class RouteGenerator {
         initHomeModule();
         return MaterialPageRoute(builder: (_) => HomeView());
       case Routes.productDetailsView:
-        initHomeModule();
+        initProductDetailsModule();
         return MaterialPageRoute(builder: (_) => ProductDetailsView());
+      case Routes.profileView:
+        return MaterialPageRoute(builder: (_) => ProfileView());
+      case Routes.cartView:
+        return MaterialPageRoute(builder: (_) => CartView());
+      // case Routes.favoriteView:
+      //   initGetFavoritesModule();
+      //   return MaterialPageRoute(builder: (_) => FavouriteView());
       case Routes.forgetPasswordView:
         initForgetPassword();
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());

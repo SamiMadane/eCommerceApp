@@ -11,7 +11,9 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return willPopScope(
-      back: false,
+      onWillPop: () => Future(() {
+        return false;
+      }),
       child: GetBuilder<MainController>(
         builder: (controller) {
           return PersistentTabView(

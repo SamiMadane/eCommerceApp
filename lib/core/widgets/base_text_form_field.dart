@@ -14,7 +14,8 @@ TextFormField baseTextFormField({
   validator,
   FocusNode? focusNode,
   onChange,
-  IconData? prefixIcon ,
+  onSubmit,
+  Icon? prefixIcon ,
 }) {
   return TextFormField(
     style: getMediumTextStyle(
@@ -28,9 +29,10 @@ TextFormField baseTextFormField({
     validator: validator,
     focusNode: focusNode,
     onChanged: onChange ?? (val) {},
+    onFieldSubmitted: onSubmit ?? (val) {},
     decoration: InputDecoration(
       filled: true,
-      prefixIcon: Icon(prefixIcon),
+      prefixIcon: prefixIcon,
       contentPadding: EdgeInsets.symmetric(
         horizontal: ManagerWidth.w16,
         vertical: ManagerHeight.h6,

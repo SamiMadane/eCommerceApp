@@ -1,3 +1,4 @@
+import 'package:e_commerce/config/constant.dart';
 import 'package:e_commerce/core/resources/manager_assets.dart';
 import 'package:e_commerce/core/resources/manager_fonts.dart';
 import 'package:e_commerce/core/resources/manager_sizes.dart';
@@ -59,7 +60,11 @@ Drawer CustomDrawer() {
               title: 'Privacy Policy',
               onPressed: () {}),
           drawerListTile(
-              icon: Icons.logout_outlined, title: 'Logout', onPressed: () {}),
+              icon: Icons.logout_outlined,
+              title: 'Logout',
+              onPressed: () {
+                logOut();
+              }),
         ],
       ),
     ),

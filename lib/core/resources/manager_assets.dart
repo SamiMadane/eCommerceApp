@@ -11,6 +11,7 @@ static const String facebook = '$imagePath/facebook.svg';
 static const String colthes = '$imagePath/clothes.svg';
 static const String colthesIcon = '$imagePath/Clothes Icon.png';
 static const String watch = '$imagePath/watch.png';
+static const String profile = '$imagePath/profile.jpg';
 }
 
 

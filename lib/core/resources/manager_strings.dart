@@ -28,7 +28,7 @@ class ManagerStrings {
   static const String createNewAccount = 'Create new account';
   static const String forget = 'Forget';
   static const String forgetYourPassword = 'Forget your password';
-  static const String teamOfUse = 'Team of use\n';
+  static const String teamOfUse = 'Team of use ';
   static const String bySigning = 'By signing below, you agree to the ';
   static const String and = 'and ';
   static const String privacyNotice = 'privacy notice';

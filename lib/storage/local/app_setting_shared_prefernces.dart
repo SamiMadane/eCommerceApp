@@ -51,4 +51,17 @@ class AppSettingSharedPrefernces {
   bool loggedIn() {
     return _sharedPreferences.getBool(ConstantsPrefKey.loggedIn).onNull();
   }
+
+  Future<bool> removeToken ({
+    required String token,
+  })async
+  {
+    return _sharedPreferences.remove(token);
+  }
+  Future<bool> removeLoggedIn ({
+    required String loggedIn,
+  })async
+  {
+    return _sharedPreferences.remove(loggedIn);
+  }
 }

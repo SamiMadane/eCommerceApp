@@ -17,9 +17,11 @@ class SplachController extends GetxController {
           seconds: Constants.splachDuration,
         ), () {
       if (_appSettingSharedPrefernces.getOutBoardingViewed()) {
-        Get.offAllNamed(
-          Routes.loginView,
-        );
+        if (_appSettingSharedPrefernces.loggedIn()) {
+          Get.offAllNamed(Routes.mainView);
+        } else {
+          Get.offAllNamed(Routes.loginView);
+        }
       } else {
         Get.offAllNamed(
           Routes.outBoardingView,

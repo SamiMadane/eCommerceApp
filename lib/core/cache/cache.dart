@@ -1,29 +1,56 @@
 class CacheData {
-  static String email = "";
-  static String username = "";
-  static String phone = "";
+  static int id = 1;
+  static int indexProduct = 0;
+  static String name = "";
+  static String image = "";
+  static String price = "";
 
-  void setEmail(String value) {
-    CacheData.email = value;
+
+  void setIndex(int value) {
+    CacheData.indexProduct = value;
   }
 
-  String getEmail() {
-    return email;
+  int getIndex() {
+    return indexProduct;
   }
 
-  void setUsername(String value) {
-    CacheData.username = value;
+  void setID(int value) {
+    CacheData.id = value;
   }
 
-  String getUsername() {
-    return username;
+  int getID() {
+    return id;
   }
 
-  void setPhone(String value) {
-    CacheData.phone = value;
+  void setName(String value) {
+    CacheData.name = value;
   }
 
-  String getPhone() {
-    return phone;
+  String getName() {
+    return name;
   }
+
+  void setImage(String value) {
+    CacheData.image = value;
+  }
+
+  String getImage() {
+    return image;
+  }
+
+  void setPrice(String value) {
+    CacheData.price = value;
+  }
+
+  String getPrice() {
+    return price;
+  }
+
+  // void setStars(int value) {
+  //   CacheData.stars = value;
+  // }
+  //
+  // int getStars() {
+  //   return stars;
+  // }
 }
