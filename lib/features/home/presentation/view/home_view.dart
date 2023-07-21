@@ -9,6 +9,7 @@ import 'package:e_commerce/core/widgets/swip_wide_text.dart';
 import 'package:e_commerce/core/widgets/will_pop_scope.dart';
 import 'package:e_commerce/features/home/presentation/controller/home_controller.dart';
 import 'package:e_commerce/features/home/presentation/widget/build_grid_product.dart';
+import 'package:e_commerce/features/home/presentation/widget/build_grid_product_shimmer.dart';
 import 'package:e_commerce/features/home/presentation/widget/custom_drawer.dart';
 import 'package:e_commerce/features/home/presentation/widget/home_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +36,14 @@ class HomeView extends StatelessWidget {
                     height: ManagerHeight.h20,
                   ),
                   baseTextFormField(
-                    hintText: 'Search “Smartphone”',
-                    controller: controller.search,
-                    prefixIcon: Icon(IconBroken.Search),
-                    onSubmit: (text){
-                      // controller.submit();
-                      // controller.searchProduct(text.toString());
-                    }
-                  ),
+                      hintText: 'Search “Smartphone”',
+                      controller: controller.search,
+                      prefixIcon: Icon(IconBroken.Search),
+                      onSubmit: (text) {
+                        controller.submit();
+                        controller.searchProduct(text.toString());
+                      }),
+
                   SizedBox(
                     height: ManagerHeight.h50,
                   ),
@@ -75,9 +76,9 @@ class HomeView extends StatelessWidget {
                                   child: ClipOval(
                                     child: Image.network(
                                       controller
-                                          .categoryDataModel!
-                                          .categoryDataDetailsModel![index]
-                                          .image ??
+                                              .categoryDataModel!
+                                              .categoryDataDetailsModel![index]
+                                              .image ??
                                           'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png',
                                       fit: BoxFit.cover,
                                     ),
@@ -87,21 +88,25 @@ class HomeView extends StatelessWidget {
                               SizedBox(
                                 height: ManagerHeight.h10,
                               ),
-                              Expanded(child: Container(width: ManagerWidth.w100, child:Text(
-                                controller
-                                    .categoryDataModel!
-                                    .categoryDataDetailsModel![index]
-                                    .name ??
-                                    'Nothing',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                style: getTextStyle(
-                                  fontSize: ManagerFontSize.s16,
-                                  color: ManagerColors.black,
-                                  weight: ManagerFontWeight.w600,
+                              Expanded(
+                                  child: Container(
+                                width: ManagerWidth.w100,
+                                child: Text(
+                                  controller
+                                          .categoryDataModel!
+                                          .categoryDataDetailsModel![index]
+                                          .name ??
+                                      'Nothing',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: getTextStyle(
+                                    fontSize: ManagerFontSize.s16,
+                                    color: ManagerColors.black,
+                                    weight: ManagerFontWeight.w600,
+                                  ),
                                 ),
-                              ),)),
+                              )),
                             ],
                           );
                         }),
@@ -128,9 +133,15 @@ class HomeView extends StatelessWidget {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     children: List.generate(
-                      controller.homeDataModel!.products!.length,
-                          (index) =>
-                          buildGridProducts(context: context, index: index ,isSearch: controller.isSearch()),
+                      controller.isSearch()
+                          ? controller.searchDataModel!.dataDetails!.length
+                          : controller.homeDataModel!.products!.length,
+                      (index) =>
+                          buildGridProducts(
+                              context: context,
+                              index: index,
+                              isSearch: controller.isSearch()) ??
+                          buildGridProductsShimmer(),
                     ),
                   ),
                 ],

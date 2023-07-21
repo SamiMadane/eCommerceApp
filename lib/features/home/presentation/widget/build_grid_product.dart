@@ -19,11 +19,11 @@ Widget buildGridProducts({context, index, isSearch}) =>
             InkWell(
               onTap: () {
                 CacheData cacheData = CacheData();
-                // isSearch ?
-                cacheData.setID(
+                isSearch
+                    ? cacheData.setID(controller
+                        .searchDataModel?.dataDetails?[index].id as int)
+                    : cacheData.setID(
                         controller.homeDataModel?.products?[index].id as int);
-                    // : cacheData.setID(controller
-                    //     .searchDataModel?.dataDetails?[index].id as int);
                 Get.toNamed(Routes.productDetailsView);
               },
               child: Stack(
@@ -38,11 +38,11 @@ Widget buildGridProducts({context, index, isSearch}) =>
                     height: ManagerHeight.h128,
                     width: ManagerWidth.w128,
                     child: Image.network(
-                      // isSearch ?
-                            controller.homeDataModel!.products![index].image
+                      isSearch
+                          ? controller.searchDataModel!.dataDetails![index]
+                              .image as String
+                          : controller.homeDataModel!.products![index].image
                               as String,
-                          // : controller.searchDataModel!.dataDetails![index]
-                          //     .image as String,
                       width: double.infinity,
                     ),
                   ),
@@ -60,11 +60,11 @@ Widget buildGridProducts({context, index, isSearch}) =>
                   height: ManagerHeight.h8,
                 ),
                 Text(
-                  // isSearch ?
-                  controller.homeDataModel!.products![index].name
+                  isSearch
+                      ? controller.searchDataModel!.dataDetails![index].name
+                          as String
+                      : controller.homeDataModel!.products![index].name
                           as String,
-                      // : controller.searchDataModel!.dataDetails![index].name
-                      //     as String,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: getTextStyle(
@@ -77,7 +77,7 @@ Widget buildGridProducts({context, index, isSearch}) =>
                   height: ManagerHeight.h6,
                 ),
                 Text(
-                  '\$ ${controller.homeDataModel!.products![index].price as String }',
+                  '\$ ${isSearch ? controller.searchDataModel!.dataDetails![index].price as double : controller.homeDataModel!.products![index].price as double}',
                   style: getTextStyle(
                       fontSize: ManagerFontSize.s16,
                       height: 1.3,

@@ -80,34 +80,37 @@ class HomeController extends GetxController {
   }
 
 
-  // Future<void> searchProduct(String text) async {
-  //   BuildContext context = Get.context as BuildContext;
-  //   (await _searchUseCase.execute(SearchUseCaseInput(text: text.toString()))).fold((l) {
-  //     print("object search error");
-  //     dialogRender(
-  //         context: context,
-  //         stateRenderType: StateRenderType.popUpErrorState,
-  //         message: l.message,
-  //         title: '',
-  //         retryAction: () {
-  //           Get.back();
-  //         });
-  //   }, (r) {
-  //     searchDataModel = r.data;
-  //     print("object search sucsess");
-  //     update();
-  //   });
-  // }
+  Future<void> searchProduct(String text) async {
+    BuildContext context = Get.context as BuildContext;
+    (await _searchUseCase.execute(SearchUseCaseInput(text: text.toString()))).fold((l) {
+      print("object search error");
+      dialogRender(
+          context: context,
+          stateRenderType: StateRenderType.popUpErrorState,
+          message: l.message,
+          title: '',
+          retryAction: () {
+            Get.back();
+          });
+    }, (r) {
+      searchDataModel = r.data;
+      print("object search sucsess");
+      update();
+    });
+  }
   bool press = false;
   void submit(){
     press = true;
   }
   bool isSearch (){
+    print('press is $press');
     if(press == true){
       return true;
     }
     return false;
+
   }
+
 
 
 }
