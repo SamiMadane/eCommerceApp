@@ -8,6 +8,7 @@ import 'package:e_commerce/features/favourite/data/response/get_favorites_respon
 import 'package:e_commerce/features/home/data/response/category_response.dart';
 import 'package:e_commerce/features/home/data/response/home_response.dart';
 import 'package:e_commerce/features/product_details/data/response/product_details_response.dart';
+import 'package:e_commerce/features/profile/data/response/profile_response.dart';
 import 'package:e_commerce/features/search/data/response/search_response.dart';
 import 'package:retrofit/http.dart';
 
@@ -57,4 +58,7 @@ abstract class AppApi {
   Future<SearchResponse> search(
       @Field(ApiConstants.text) text,
       );
+
+  @GET(RequestConstants.profile)
+  Future<ProfileResponse> profile();
 }
