@@ -37,6 +37,11 @@ import 'package:e_commerce/features/product_details/data/repository_impl/product
 import 'package:e_commerce/features/product_details/domain/repository/product_details_repository.dart';
 import 'package:e_commerce/features/product_details/domain/use_case/product_details_usecase.dart';
 import 'package:e_commerce/features/product_details/presentation/controller/product_details_controller.dart';
+import 'package:e_commerce/features/profile/data/data_source/remote_profile_data_source.dart';
+import 'package:e_commerce/features/profile/data/repository_impl/profile_repository_implementation.dart';
+import 'package:e_commerce/features/profile/domain/repository/profile_repository.dart';
+import 'package:e_commerce/features/profile/domain/use_case/profile_usecase.dart';
+import 'package:e_commerce/features/profile/presentation/controller/profile_controller.dart';
 import 'package:e_commerce/features/search/data/data_source/remote_get_search_data_source.dart';
 import 'package:e_commerce/features/search/data/repository_impl/search_repository_impl.dart';
 import 'package:e_commerce/features/search/domain/repository/search_repository.dart';
@@ -173,6 +178,8 @@ disposeRegisterModule() {
 initMainModule() {
   initHomeModule();
   initGetFavoritesModule();
+  initProfileModule();
+
   Get.put<MainController>(MainController());
 }
 
@@ -288,6 +295,35 @@ initSearchModule() {
       ),
     );
   }
+
+}
+
+initProfileModule() {
+  if (!GetIt.I.isRegistered<RemoteProfileDataSource>()) {
+    instance.registerLazySingleton<RemoteProfileDataSource>(
+          () => RemoteProfileDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ProfileRepository>()) {
+    instance.registerLazySingleton<ProfileRepository>(
+          () => ProfileRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ProfileUseCase>()) {
+    instance.registerLazySingleton<ProfileUseCase>(
+          () => ProfileUseCase(
+        instance(),
+      ),
+    );
+  }
+  Get.put<ProfileController>(ProfileController());
 
 }
 

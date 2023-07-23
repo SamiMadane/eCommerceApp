@@ -6,6 +6,7 @@ class RequestConstants {
   static const String favorites = 'favorites';
   static const String productDetails = 'products/{id}';
   static const String search = 'products/search';
+  static const String profile = 'profile';
 
   // static const String home = '$basePath/home';
   // static const String emailVerification = '$basePath/email-verification';

@@ -29,7 +29,6 @@ class ProductDetailsView extends StatelessWidget {
           onWillPop: () => Future(() {
             disposeProductDetailsModule();
             disposeGetFavoritesModule();
-            initMainModule();
             return true;
           }),
           child: Scaffold(
@@ -48,7 +47,7 @@ class ProductDetailsView extends StatelessWidget {
                 ),
               ],
             ),
-            body: SingleChildScrollView(
+            body:SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(

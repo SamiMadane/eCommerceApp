@@ -23,13 +23,18 @@ class ProductDetailsController extends GetxController {
 
   CacheData cacheData = CacheData();
 
+  late bool isLoading;
 
   @override
   void onInit() {
+    isLoading = true;
+    Future.delayed(const Duration(seconds: 8), () {
+      isLoading = false;
+      update();
+    });
     super.onInit();
     productDetails();
   }
-
 
   Future<void> productDetails() async {
     BuildContext context = Get.context as BuildContext;

@@ -54,8 +54,9 @@ class RouteGenerator {
       case Routes.productDetailsView:
         initProductDetailsModule();
         return MaterialPageRoute(builder: (_) => ProductDetailsView());
-      case Routes.profileView:
-        return MaterialPageRoute(builder: (_) => ProfileView());
+      // case Routes.profileView:
+      //   initProfileModule();
+      //   return MaterialPageRoute(builder: (_) => ProfileView());
       case Routes.cartView:
         return MaterialPageRoute(builder: (_) => CartView());
       // case Routes.favoriteView:

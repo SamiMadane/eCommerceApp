@@ -28,13 +28,18 @@ class HomeController extends GetxController {
 
   Map<int,bool> favorites = {};
 
+  late bool isLoading;
   @override
   void onInit() {
+    isLoading = true;
+    Future.delayed(const Duration(seconds: 14), () {
+      isLoading = false;
+      update();
+    });
     super.onInit();
     home();
     category();
   }
-
 
   Future<void> home() async {
     BuildContext context = Get.context as BuildContext;
