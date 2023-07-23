@@ -36,11 +36,13 @@ class ApiConstants {
   static const String baseUrl = "https://student.valuxapps.com/api/";
   static const String authorization = "authorization";
   static const String token = "token";
+  static const String id = "id";
   static const int sendTimeOutDuration = 120;
   static const int receiveTimeOutDuration = 120;
   static const String email = 'email';
   static const String password = 'password';
   static const String data = 'data';
+  static const String cartItem = 'cart_items';
   static const String noInternetConnection = 'No Internet connection';
   static const String message = 'message';
   static const String errors = 'errors';

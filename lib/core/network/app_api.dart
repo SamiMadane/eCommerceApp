@@ -3,6 +3,8 @@ import 'package:e_commerce/config/constant.dart';
 import 'package:e_commerce/config/request_constant.dart';
 import 'package:e_commerce/features/auth/data/response/login_response.dart';
 import 'package:e_commerce/features/auth/data/response/register_response.dart';
+import 'package:e_commerce/features/cart/data/response/carts_response.dart';
+import 'package:e_commerce/features/cart/data/response/get_carts_response/get_carts_response.dart';
 import 'package:e_commerce/features/favourite/data/response/change_favorites_response.dart';
 import 'package:e_commerce/features/favourite/data/response/get_favorites_response/favorites_response.dart';
 import 'package:e_commerce/features/home/data/response/category_response.dart';
@@ -61,4 +63,13 @@ abstract class AppApi {
 
   @GET(RequestConstants.profile)
   Future<ProfileResponse> profile();
+
+  @POST(RequestConstants.carts)
+  Future<CartsResponse> carts(
+      @Field(ApiConstants.productID) product_id,
+      );
+
+  @GET(RequestConstants.carts)
+  Future<GetCartsResponse> cartProduct();
+
 }
