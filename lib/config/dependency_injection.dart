@@ -13,6 +13,15 @@ import 'package:e_commerce/features/auth/presentation/controller/forget_password
 import 'package:e_commerce/features/auth/presentation/controller/login_controller.dart';
 import 'package:e_commerce/features/auth/presentation/controller/register_controller.dart';
 import 'package:e_commerce/features/auth/presentation/controller/reset_password_controller.dart';
+import 'package:e_commerce/features/cart/data/data_source/get_favorites_data_source_impl/remote_get_carts_data_source.dart';
+import 'package:e_commerce/features/cart/data/data_source/remote_carts_data_source.dart';
+import 'package:e_commerce/features/cart/data/repository_impl/carts_repository_implementation.dart';
+import 'package:e_commerce/features/cart/data/repository_impl/get_carts_repository_impl/get_carts_repository_impl.dart';
+import 'package:e_commerce/features/cart/domain/repository/carts_repository.dart';
+import 'package:e_commerce/features/cart/domain/repository/get_carts_repository/get_carts_repository.dart';
+import 'package:e_commerce/features/cart/domain/use_case/carts_usecase.dart';
+import 'package:e_commerce/features/cart/domain/use_case/get_carts_use_case/get_carts_use_case.dart';
+import 'package:e_commerce/features/cart/presentation/controller/cart_controller.dart';
 import 'package:e_commerce/features/favourite/data/data_source/get_favorites_data_source_impl/remote_get_favorites_data_source.dart';
 import 'package:e_commerce/features/favourite/data/data_source/remote_favorite_data_source.dart';
 import 'package:e_commerce/features/favourite/data/repository_impl/favorite_repository_implementation.dart';
@@ -178,6 +187,7 @@ disposeRegisterModule() {
 initMainModule() {
   initHomeModule();
   initGetFavoritesModule();
+  initGetCartsModule();
   initProfileModule();
 
   Get.put<MainController>(MainController());
@@ -213,6 +223,7 @@ initCategoryModule() {
 initHomeModule() {
   initCategoryModule();
   initFavoriteModule();
+  initCartsModule();
   initSearchModule();
 
   if (!GetIt.I.isRegistered<RemoteHomeDataSource>()) {
@@ -263,6 +274,34 @@ initFavoriteModule() {
   if (!GetIt.I.isRegistered<FavoriteUseCase>()) {
     instance.registerLazySingleton<FavoriteUseCase>(
           () => FavoriteUseCase(
+        instance(),
+      ),
+    );
+  }
+
+}
+
+initCartsModule() {
+  if (!GetIt.I.isRegistered<RemoteCartsDataSource>()) {
+    instance.registerLazySingleton<RemoteCartsDataSource>(
+          () => RemoteCartsDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<CartsRepository>()) {
+    instance.registerLazySingleton<CartsRepository>(
+          () => CartsRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<CartsUseCase>()) {
+    instance.registerLazySingleton<CartsUseCase>(
+          () => CartsUseCase(
         instance(),
       ),
     );
@@ -396,6 +435,35 @@ initGetFavoritesModule() {
     );
   }
   Get.put<FavoriteController>(FavoriteController());
+}
+
+
+initGetCartsModule() {
+  if (!GetIt.I.isRegistered<RemoteGetCartsDataSource>()) {
+    instance.registerLazySingleton<RemoteGetCartsDataSource>(
+          () => RemoteGetCartsDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<GetCartsRepository>()) {
+    instance.registerLazySingleton<GetCartsRepository>(
+          () => GetCartsRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<GetCartsUseCase>()) {
+    instance.registerLazySingleton<GetCartsUseCase>(
+          () => GetCartsUseCase(
+        instance(),
+      ),
+    );
+  }
+  Get.put<CartController>(CartController());
 }
 disposeGetFavoritesModule() {
   if (GetIt.I.isRegistered<RemoteGetFavoritesDataSource>()) {

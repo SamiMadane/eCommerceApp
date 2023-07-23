@@ -41,22 +41,29 @@ class CartView extends StatelessWidget {
           ],
         ),
         body: GetBuilder<CartController>(builder: (controller) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Column(
-                children: [
-                  Column(
+          return RefreshIndicator(
+            onRefresh: () async {
+              await controller.getCarts();
+            },
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Column(
                     children: [
-                      ListView.separated(
-                        itemBuilder: (context, index) => buildCartItem(context:context , index:index),
-                        separatorBuilder: (context, index) => Divider(),
-                        itemCount: controller.getCartsDataModel!.cartsItem!.length,
-                      )
+                      Column(
+                        children: [
+                          ListView.separated(
+                            itemBuilder: (context, index) => buildCartItem(context:context , index:index),
+                            separatorBuilder: (context, index) => Divider(),
+                            itemCount: controller.getCartsDataModel!.cartsItem!.length,
+                          )
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         }),
