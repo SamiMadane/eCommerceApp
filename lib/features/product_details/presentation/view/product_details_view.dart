@@ -229,6 +229,9 @@ class ProductDetailsView extends StatelessWidget {
                       height: ManagerHeight.h20,
                     ),
                     mainButton(
+                      onPressed: (){
+                        controller.carts(id);
+                      },
                         child: Text(
                           "Add To Cart",
                           style: getBoldTextStyle(
@@ -237,7 +240,8 @@ class ProductDetailsView extends StatelessWidget {
                         ),
                         color: ManagerColors.primaryColor,
                         height: ManagerHeight.h50,
-                        minWidth: double.infinity)
+                        minWidth: double.infinity,
+                    )
                   ],
                 ),
               ),

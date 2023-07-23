@@ -280,13 +280,13 @@ class _AppApi implements AppApi {
   }
 
   @override
-  Future<ChangeFavoritesResponse> carts(dynamic product_id) async {
+  Future<CartsResponse> carts(dynamic product_id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {'product_id': product_id};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ChangeFavoritesResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<CartsResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -302,18 +302,18 @@ class _AppApi implements AppApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ChangeFavoritesResponse.fromJson(_result.data!);
+    final value = CartsResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<GetFavoritesResponse> cartProduct() async {
+  Future<GetCartsResponse> cartProduct() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetFavoritesResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<GetCartsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -329,7 +329,7 @@ class _AppApi implements AppApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = GetFavoritesResponse.fromJson(_result.data!);
+    final value = GetCartsResponse.fromJson(_result.data!);
     return value;
   }
 

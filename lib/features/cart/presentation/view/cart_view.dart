@@ -1,9 +1,9 @@
 import 'package:e_commerce/core/resources/icon_broken.dart';
 import 'package:e_commerce/core/resources/manager_colors.dart';
 import 'package:e_commerce/core/resources/manager_fonts.dart';
-import 'package:e_commerce/core/resources/manager_sizes.dart';
 import 'package:e_commerce/core/resources/manager_styles.dart';
 import 'package:e_commerce/core/widgets/will_pop_scope.dart';
+import 'package:e_commerce/features/cart/presentation/controller/cart_controller.dart';
 import 'package:e_commerce/features/cart/presentation/widget/build_cart_item.dart';
 import 'package:e_commerce/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -40,24 +40,26 @@ class CartView extends StatelessWidget {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    buildCartItem(),
-                    buildCartItem(),
-                    buildCartItem(),
-                    buildCartItem(),
-                    buildCartItem(),
-                  ],
-                ),
-              ],
+        body: GetBuilder<CartController>(builder: (controller) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  Column(
+                    children: [
+                      ListView.separated(
+                        itemBuilder: (context, index) => buildCartItem(context:context , index:index),
+                        separatorBuilder: (context, index) => Divider(),
+                        itemCount: controller.getCartsDataModel!.cartsItem!.length,
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

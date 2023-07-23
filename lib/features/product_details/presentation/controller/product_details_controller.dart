@@ -1,6 +1,7 @@
 import 'package:e_commerce/config/dependency_injection.dart';
 import 'package:e_commerce/core/cache/cache.dart';
 import 'package:e_commerce/core/state_renderer/state_renderer.dart';
+import 'package:e_commerce/features/cart/domain/use_case/carts_usecase.dart';
 import 'package:e_commerce/features/favourite/domain/use_case/favorite_usecase.dart';
 import 'package:e_commerce/features/product_details/domain/model/product_details_data_model.dart';
 import 'package:e_commerce/features/product_details/domain/use_case/product_details_usecase.dart';
@@ -16,9 +17,9 @@ class ProductDetailsController extends GetxController {
 
   ProductDetailsDataModel? productDetailsDataModel;
 
-  final ProductDetailsUseCase _productDetailsUseCase = instance<
-      ProductDetailsUseCase>();
+  final ProductDetailsUseCase _productDetailsUseCase = instance<ProductDetailsUseCase>();
   final FavoriteUseCase _favoriteUseCase = instance<FavoriteUseCase>();
+  final CartsUseCase _cartsUseCase = instance<CartsUseCase>();
 
 
   CacheData cacheData = CacheData();
@@ -58,6 +59,25 @@ class ProductDetailsController extends GetxController {
     BuildContext context = Get.context as BuildContext;
     (await _favoriteUseCase.execute(
         FavoriteUseCaseInput(productID: productID)
+    )).fold((l) {
+      dialogRender(
+          context: context,
+          stateRenderType: StateRenderType.popUpErrorState,
+          message: l.message,
+          title: '',
+          retryAction: () {
+            Get.back();
+          });
+    }, (r) {
+      productDetails();
+      update();
+    });
+  }
+
+  Future<void> carts(productID) async {
+    BuildContext context = Get.context as BuildContext;
+    (await _cartsUseCase.execute(
+        CartsUseCaseInput(productID: productID)
     )).fold((l) {
       dialogRender(
           context: context,
