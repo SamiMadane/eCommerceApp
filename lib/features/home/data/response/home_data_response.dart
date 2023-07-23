@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/home/data/response/banners_response.dart';
 import 'package:e_commerce/features/home/data/response/products_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -6,6 +7,8 @@ part 'home_data_response.g.dart';
 
 @JsonSerializable()
 class HomeDataResponse{
+  @JsonKey(name: 'banners')
+  List<BannersResponse>? banners;
   @JsonKey(name: 'products')
   List<ProductsResponse>? products;
 

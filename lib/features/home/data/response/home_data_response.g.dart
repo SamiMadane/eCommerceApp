@@ -11,9 +11,12 @@ HomeDataResponse _$HomeDataResponseFromJson(Map<String, dynamic> json) =>
       products: (json['products'] as List<dynamic>?)
           ?.map((e) => ProductsResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )..banners = (json['banners'] as List<dynamic>?)
+        ?.map((e) => BannersResponse.fromJson(e as Map<String, dynamic>))
+        .toList();
 
 Map<String, dynamic> _$HomeDataResponseToJson(HomeDataResponse instance) =>
     <String, dynamic>{
+      'banners': instance.banners,
       'products': instance.products,
     };

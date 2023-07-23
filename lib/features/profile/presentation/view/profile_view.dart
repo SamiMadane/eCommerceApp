@@ -66,7 +66,7 @@ class _ProfileViewState extends State<ProfileView> {
                           height: ManagerHeight.h16,
                         ),
                         Text(
-                          'Sami Madane',
+                          controller.profileDataModel!.name,
                           style: getBoldTextStyle(
                             fontSize: ManagerFontSize.s20,
                             color: ManagerColors.black,
@@ -76,7 +76,7 @@ class _ProfileViewState extends State<ProfileView> {
                           height: ManagerHeight.h6,
                         ),
                         Text(
-                          'sami.madane@gmail.com',
+                          controller.profileDataModel!.email,
                           style: getMediumTextStyle(
                             fontSize: ManagerFontSize.s18,
                             color: ManagerColors.textgreyColor,
