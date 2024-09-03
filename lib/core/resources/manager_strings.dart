@@ -1,0 +1,55 @@
+class ManagerStrings {
+  static const String swip = 'Swip';
+  static const String wide = 'wide';
+  static const String noRouteFound = 'No Route Found';
+  static const String outBoardingTitle1 = 'Discover New Products';
+  static const String outBoardingTitle2 = 'Earn Points For Shopping';
+  static const String outBoardingTitle3 = 'Get Fast Local Delivery';
+  static const String outBoardingSubTitle1 = 'Many new products are discovered by people simply happening upon them while being out and about in the world.';
+  static const String outBoardingSubTitle2 = 'The purpose of reward points is to provide an incentive for customers to make repeat purchases.';
+  static const String outBoardingSubTitle3 = 'Wow Express offers cash on delivery services and fast delivery services so that your customers.';
+  static const String next = 'Next';
+  static const String welcomeBack = 'Welcome Back';
+  static const String loginToYourAccount = 'Login to your account';
+  static const String emailAddress = 'Email address';
+  static const String fullName = 'Full name';
+  static const String password = 'Password';
+  static const String forgetPassword = 'Forget Password ?';
+  static const String login = 'Login';
+  static const String or = 'Or';
+  static const String dontHaveAnAccount = 'Don’t have an account?';
+  static const String signUp = 'Sign Up';
+  static const String google = 'Google';
+  static const String facebook = 'Facebook';
+  static const String phoneNumber = 'Phone number';
+  static const String confirmPassword = 'Confirm password';
+  static const String alreadyHaveAnAccount = 'Already have an account?';
+  static const String register = 'Register';
+  static const String createNewAccount = 'Create new account';
+  static const String forget = 'Forget';
+  static const String forgetYourPassword = 'Forget your password';
+  static const String teamOfUse = 'Team of use ';
+  static const String bySigning = 'By signing below, you agree to the ';
+  static const String and = 'and ';
+  static const String privacyNotice = 'privacy notice';
+  static const String continueText = 'Continue';
+  static const String reset = 'Reset';
+  static const String resetYourPassword = 'Reset your password';
+  static const String enterYourNewPassword = 'Enter Your New Password';
+  static const String newPassword = 'New Password';
+  static const String changePassword = 'Change Password';
+  static const String bearer = 'Bearer';
+  static const String invalidEmail = 'Invalid Email';
+  static const String invalidPassword = 'Invalid Password';
+  static const String requiredFullName = 'Full Name Required';
+  static const String requiredPhone = 'Phone Required';
+  static const String invalidEmptyCode = "This field is required";
+  static const String rememberMe = 'Remember me';
+  static const String loading = 'Loading...';
+  static const String ok = 'Ok';
+  static const String thanks = 'thanks';
+  static const String shouldAgreePolicies = 'Should Agree Terms and Policies';
+  static const String error = 'Error';
+
+
+}
